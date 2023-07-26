@@ -1,4 +1,4 @@
-/* eslint-disable no-irregular-whitespace */
+import { Comment } from './Comment';
 import styles from './Post.module.css'
 
 export function Post() {
@@ -21,6 +21,22 @@ export function Post() {
             <p>cabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀</p>
             <p><a href="#">jane.design/doctorcare</a></p>
             <p><a href='#'>#novoprojeto #nlw #rocketseat</a></p>
+        </div>
+
+        <form className={styles.commentForm}>
+            <strong>Deixei seu feedback</strong>
+
+            <textarea placeholder='Deixe seu comentário' />
+
+            <footer>
+                <button type='submit'>Publicar</button>
+            </footer>
+        </form>
+
+        <div className={styles.commentList}>
+          <Comment />
+          <Comment />
+          <Comment />
         </div>
      </article>
     );
