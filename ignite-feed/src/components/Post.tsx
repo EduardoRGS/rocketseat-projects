@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { format, formatDistanceToNow } from 'date-fns';
 import { Avatar } from './Avatar';
 import { Comment } from './Comment';
 import styles from './Post.module.css'
 import { ptBR } from 'date-fns/locale';
+
 
 interface Props {
     author: { avatarUrl: string, name: string, role: string },
@@ -14,14 +16,19 @@ export function Post({author, content, publisheAt}: Props) {
     const publishedDateformatted = format(publisheAt, "d 'de' LLLL 'ás' HH:mm'h'", {
         locale: ptBR,
     })
+    const [comments, setComments] = useState<string[]>([])
+    const [newComment, setNewComment] = useState<string>('')
 
     const publishedDateRelativeToNow = formatDistanceToNow(publisheAt, {
         locale: ptBR,
         addSuffix: true
     })
 
-    console.log(content);
-    
+    const handleCreateNewComment = () => {
+        event?.preventDefault()
+        setComments([...comments, newComment])
+        setNewComment('')
+    }
 
 
     return (
@@ -51,10 +58,14 @@ export function Post({author, content, publisheAt}: Props) {
             <p><a href='#'>#novoprojeto #nlw #rocketseat</a></p>
         </div>
 
-        <form className={styles.commentForm}>
+        <form onSubmit={handleCreateNewComment} 
+        className={styles.commentForm}>
             <strong>Deixei seu feedback</strong>
 
-            <textarea placeholder='Deixe seu comentário' />
+            <textarea 
+            onChange={e => setNewComment(e.target.value)} 
+            value={newComment}
+            placeholder='Deixe seu comentário'/>
 
             <footer>
                 <button type='submit'>Publicar</button>
@@ -62,9 +73,9 @@ export function Post({author, content, publisheAt}: Props) {
         </form>
 
         <div className={styles.commentList}>
-          <Comment />
-          <Comment />
-          <Comment />
+            {comments.map(comment => {
+                return <Comment content={comment} />
+            })}
         </div>
      </article>
     );
