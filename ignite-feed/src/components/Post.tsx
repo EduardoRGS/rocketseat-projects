@@ -1,26 +1,53 @@
+import { format, formatDistanceToNow } from 'date-fns';
 import { Avatar } from './Avatar';
 import { Comment } from './Comment';
 import styles from './Post.module.css'
+import { ptBR } from 'date-fns/locale';
 
-export function Post() {
+interface Props {
+    author: { avatarUrl: string, name: string, role: string },
+    content: { type: string, content: string}[],
+    publisheAt: Date
+}
+
+export function Post({author, content, publisheAt}: Props) {
+    const publishedDateformatted = format(publisheAt, "d 'de' LLLL 'ás' HH:mm'h'", {
+        locale: ptBR,
+    })
+
+    const publishedDateRelativeToNow = formatDistanceToNow(publisheAt, {
+        locale: ptBR,
+        addSuffix: true
+    })
+
+    console.log(content);
+    
+
+
     return (
      <article className={styles.post}>
         <header>
             <div className={styles.author}>
-                <Avatar hasBorder src='https://github.com/EduardoRGS.png'/>
+                <Avatar hasBorder src={author.avatarUrl}/>
                 <div className={styles.authorInfo}>
-                    <strong>Eduardo Ribeiro</strong>
-                    <span>FullStack Developer</span>
+                    <strong>{author.name}</strong>
+                    <span>{author.role}</span>
                 </div>
             </div>
 
-            <time dateTime='2023-97-25 08:13:30'>Publicado há 1h</time>
+            <time title={publishedDateformatted} dateTime={publisheAt.toISOString()}>
+                {publishedDateRelativeToNow}
+            </time>
         </header>
 
         <div className={styles.content}>
-            <p>Fala galeraa 👋</p>
-            <p>cabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀</p>
-            <p><a href="#">jane.design/doctorcare</a></p>
+            {content.map(line => {
+                if(line.type === 'paragraph') {
+                    return <p>{line.content}</p>
+                } else if (line.type === 'link') {
+                    return  <p><a href="#">{line.content}</a></p>
+                }
+            })}
             <p><a href='#'>#novoprojeto #nlw #rocketseat</a></p>
         </div>
 
