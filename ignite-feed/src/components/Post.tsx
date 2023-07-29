@@ -30,6 +30,14 @@ export function Post({author, content, publisheAt}: Props) {
         setNewComment('')
     }
 
+    const deleteComment = (commentToDelete: string) => {
+        const commentWithoutDeleteOne = comments.filter(comment => {
+            return comment !== commentToDelete;
+        })
+        setComments(commentWithoutDeleteOne)
+    }
+
+    const isNewCommentEmpty = newComment.length === 0;
 
     return (
      <article className={styles.post}>
@@ -50,9 +58,9 @@ export function Post({author, content, publisheAt}: Props) {
         <div className={styles.content}>
             {content.map(line => {
                 if(line.type === 'paragraph') {
-                    return <p>{line.content}</p>
+                    return <p key={line.content}>{line.content}</p>
                 } else if (line.type === 'link') {
-                    return  <p><a href="#">{line.content}</a></p>
+                    return  <p key={line.content}><a href="#">{line.content}</a></p>
                 }
             })}
             <p><a href='#'>#novoprojeto #nlw #rocketseat</a></p>
@@ -65,16 +73,20 @@ export function Post({author, content, publisheAt}: Props) {
             <textarea 
             onChange={e => setNewComment(e.target.value)} 
             value={newComment}
+            required
             placeholder='Deixe seu comentário'/>
 
             <footer>
-                <button type='submit'>Publicar</button>
+                <button type='submit' disabled={isNewCommentEmpty}>
+                    Publicar</button>
             </footer>
         </form>
 
         <div className={styles.commentList}>
             {comments.map(comment => {
-                return <Comment content={comment} />
+                return <Comment key={comment} 
+                content={comment}
+                onDeleteComment={comment => deleteComment(comment)}/>
             })}
         </div>
      </article>
