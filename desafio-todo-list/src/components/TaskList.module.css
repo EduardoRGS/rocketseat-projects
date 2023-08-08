@@ -1,0 +1,128 @@
+.list {
+    display: grid;
+    gap: 1rem;
+  }
+  
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    padding: 4em 0 1.5em 0;
+    font-size: 87.5%;
+    font-weight: bold;
+  }
+  
+  .stats span {
+    color: var(--gray-200); /* Substitua isso pela cor desejada */
+    padding: 0.125rem 0.5rem;
+    margin-left: 0.25rem;
+    border-radius: 50%; /* Substitua isso pelo valor desejado */
+    background-color: var(--gray-400); /* Substitua isso pela cor desejada */
+  }
+  
+  .stats p:first-child {
+    color: var(--blue); /* Substitua isso pela cor desejada */
+  }
+  
+  .stats p:last-child {
+    color: var(--purple); /* Substitua isso pela cor desejada */
+  }
+  
+  .task {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--gray-400); /* Substitua isso pela cor desejada */
+    border-radius: 5px; /* Substitua isso pelo valor desejado */
+    background-color: var(--gray-500); /* Substitua isso pela cor desejada */
+  }
+  
+  .taskComplete,
+  .taskIncomplete {
+    display: flex;
+    justify-content: left;
+    width: 100%;
+    color: var(--gray-100); /* Substitua isso pela cor desejada */
+    transition: text-decoration 0.5s ease-out, color 0.5s ease-out;
+  }
+  
+  .taskComplete {
+    color: var(--gray-300); /* Substitua isso pela cor desejada */
+    text-decoration: line-through;
+  }
+  
+  .btnComplete,
+  .btnIncomplete {
+    display: flex;
+    justify-content: center;
+    padding: 0.125rem;
+    font-size: 87.5%;
+    border: 1px solid var(--blue); /* Substitua isso pela cor desejada */
+    border-radius: 50%; /* Substitua isso pelo valor desejado */
+    background: none;
+    transition: opacity 0.15s, background-color 0.15s, border 0.15s;
+  }
+  
+  .btnComplete svg,
+  .btnIncomplete svg {
+    opacity: 0;
+  }
+  
+  .btnComplete:focus-visible,
+  .btnComplete:hover,
+  .btnIncomplete:focus-visible,
+  .btnIncomplete:hover {
+    opacity: 0.7;
+    background-color: rgba(0, 0, 255, 0.1); /* Substitua isso pela cor desejada */
+  }
+  
+  .btnComplete {
+    color: var(--gray-100); /* Substitua isso pela cor desejada */
+    border: 1px solid var(--purple-dark); /* Substitua isso pela cor desejada */
+    background-color: var(--purple-dark); /* Substitua isso pela cor desejada */
+  
+    svg {
+      opacity: 1;
+    }
+  
+    .btnComplete:focus-visible,
+    .btnComplete:hover {
+      opacity: 1;
+      background-color: var(--purple); /* Substitua isso pela cor desejada */
+      border: 1px solid var(--purple); /* Substitua isso pela cor desejada */
+    }
+  }
+  
+  .btnDelete {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    font-size: 120%;
+    color: var(--gray-200); /* Substitua isso pela cor desejada */
+    border: none;
+    background: none;
+    transition: background-color 0.15s, border-radius 0.15s;
+  
+    .btnDelete:focus-visible,
+    .btnDelete:hover {
+      color: #ff0000; /* Substitua isso pela cor desejada */
+      border-radius: 5px; /* Substitua isso pelo valor desejado */
+      background-color:var(--gray-400); /* Substitua isso pela cor desejada */
+    }
+  }
+  
+  .emptyList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4em;
+    gap: 1rem;
+    color: var(--gray-300); /* Substitua isso pela cor desejada */
+  
+    svg {
+      font-size: 350%;
+      opacity: 0.5;
+    }
+  }
+  
