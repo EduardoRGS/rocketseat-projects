@@ -1,0 +1,44 @@
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: -2rem;
+  }
+  
+  .form input {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    color:var(--gray-100); /* Substitua isso pela cor desejada */
+    background-color: var(--gray-500); /* Substitua isso pela cor desejada */
+    border: 1px solid var(--gray-700); /* Substitua isso pela cor desejada */
+    border-radius: 5px; /* Substitua isso pelo valor desejado */
+  
+    &:focus-visible {
+      border: 1px solid var(--purple); /* Substitua isso pela cor desejada */
+      outline: none;
+    }
+  }
+  
+  .form button {
+    display: flex;
+    align-items: center;
+    padding: 1em;
+    gap: 0.25em;
+    color: var(--gray-100); /* Substitua isso pela cor desejada */
+    border: none;
+    border-radius: 5px; /* Substitua isso pelo valor desejado */
+    background-color: var(--blue-dark); /* Substitua isso pela cor desejada */
+    transition: background-color 0.15s;
+  }
+  
+  .form button:focus-visible,
+  .form button:hover {
+    background-color: var(--blue); /* Substitua isso pela cor desejada */
+  }
+  
+  .form button svg {
+    font-size: 150%;
+  }
+  
